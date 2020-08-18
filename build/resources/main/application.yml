@@ -1,0 +1,10 @@
+server:
+  servlet:
+    context-path: /api/hotels
+
+
+hotel:
+  url: https://cvcbackendhotel.herokuapp.com/hotels
+  path:
+    find-by-hotelId: /{hotelId}
+    find-by-cityId: /avail/{cityId}

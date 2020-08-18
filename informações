@@ -1,0 +1,20 @@
+rua major sertório 200 15 ANDAR
+2178-7700
+RG- 
+
+Sidney Neves de Souza
+CPF: 063.729.678-80
+RG: 16785169-x
+Nascimento: 17/03/1965
+Rua Walter Rummel 139 apto 42A
+Cep: 03928110
+Cel: 98374-6615
+
+Empresa: CLASP
+Endereço: Rua major sertório 200, 15 andar.
+Cep: 01222-000
+Telefone: 2178-7700
+
+sudo gedit /etc/systemd/system/mongodb.service
+
+

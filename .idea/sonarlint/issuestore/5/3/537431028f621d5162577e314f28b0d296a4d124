@@ -1,0 +1,11 @@
+
+c
+java:S1128"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âüÿÿÿÿ8 ®Œ—À.
+g
+java:S1128	"ERemove this unused import 'org.springframework.data.domain.Pageable'.(‡ë‚Öıÿÿÿÿ8 ®Œ—À.
+j
+java:S1128"HRemove this unused import 'com.cvc.backend.config.pageable.ApiPageable'.(Šı³ğıÿÿÿÿ8Âî•—À.
+l
+java:S1128"JRemove this unused import 'springfox.documentation.annotations.ApiIgnore'.(µâ¤›ùÿÿÿÿ8 ®Œ—À.
+s
+java:S1128"QRemove this unused import 'org.springframework.web.bind.annotation.RequestParam'.(Â¬À·ùÿÿÿÿ8ƒ¹™À.

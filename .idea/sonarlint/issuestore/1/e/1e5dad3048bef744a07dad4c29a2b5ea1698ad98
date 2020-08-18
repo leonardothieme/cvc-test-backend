@@ -1,0 +1,10 @@
+
+^
+java:S18543"<Remove this useless assignment to local variable "response".(ô¥Å½şÿÿÿÿ8Ü—À˜À.
+c
+java:S1128"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âüÿÿÿÿ8âíÀ˜À.
+g
+java:S1128	"ERemove this unused import 'org.springframework.data.domain.Pageable'.(‡ë‚Öıÿÿÿÿ8âíÀ˜À.
+X	java:S1257"<This block of commented-out lines of code should be removed.(™Ü”Æ8Û›·˜À.
+O
+java:S14813"-Remove this unused "response" local variable.(ô¥Å½şÿÿÿÿ8Ü—À˜À.

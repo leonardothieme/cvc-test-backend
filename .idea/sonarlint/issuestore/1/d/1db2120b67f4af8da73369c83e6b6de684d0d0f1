@@ -1,0 +1,31 @@
+
+N
+java:S1128"1Remove this unused import 'java.math.BigDecimal'.(êêŠ8„ã¸›À.
+\
+java:S1854-"?Remove this useless assignment to local variable "roomDetails".(ÑàïÜ8Âİë›À.
+Z
+java:S1854*"8Remove this useless assignment to local variable "days".(áıØ…şÿÿÿÿ8„ã¸›À.
+K
+java:S1481*")Remove this unused "days" local variable.(áıØ…şÿÿÿÿ8„ã¸›À.
+W
+java:S1854,":Remove this useless assignment to local variable "hotels".(ÕèÙ–8ÌÙÜ›À.
+c
+java:S1128	"ARemove this unused import 'org.springframework.data.domain.Page'.(˜âüÿÿÿÿ8ïš‚—À.
+g
+java:S1128
+"ERemove this unused import 'org.springframework.data.domain.Pageable'.(‡ë‚Öıÿÿÿÿ8ŞÑ—À.
+]	java:S125:"<This block of commented-out lines of code should be removed.(¥…£¦ùÿÿÿÿ8¤˜ä›À.
+M
+java:S1481-"0Remove this unused "roomDetails" local variable.(ÑàïÜ8Âİë›À.
+T
+java:S3655,"7Call "Optional#isPresent()" before accessing the value.(ÕèÙ–8Œ‰Ù›À.
+u
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8²‰Í’À.
+H
+java:S1481,"+Remove this unused "hotels" local variable.(ÕèÙ–8ÌÙÜ›À.
+J
+java:S1128"-Remove this unused import 'java.time.Period'.(šÉ¢½8¨Ãş™À.
+C
+java:S1172$"&Remove these unused method parameters.(Æ×ø®8Ü›™À.
+T
+java:S3655("7Call "Optional#isPresent()" before accessing the value.(Ù€½…8ÅÜ´šÀ.
