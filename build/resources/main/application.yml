@@ -1,7 +1,7 @@
 server:
   servlet:
-    context-path: /api/hotels
-  port: 8081
+    context-path: /api/
+  port: 8080
 
 
 hotel:

@@ -2,7 +2,7 @@ package com.cvc.backend.controller;
 
 import com.cvc.backend.api.HotelsApi;
 import com.cvc.backend.common.model.HotelsDetailsResponse;
-import com.cvc.backend.model.HotelTotalAccommodationParamsPayload;
+import com.cvc.backend.model.payload.HotelTotalAccommodationParamsPayload;
 import com.cvc.backend.model.response.HotelTotalAccommodationResponse;
 import com.cvc.backend.service.HotelsService;
 import lombok.RequiredArgsConstructor;

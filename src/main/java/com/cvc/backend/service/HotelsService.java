@@ -5,7 +5,7 @@ import com.cvc.backend.common.model.HotelsDetailsResponse;
 import com.cvc.backend.common.model.RoomsHotels;
 import com.cvc.backend.exception.handler.DateAfterCheckoutException;
 import com.cvc.backend.exception.handler.HotelNoContentException;
-import com.cvc.backend.model.HotelTotalAccommodationParamsPayload;
+import com.cvc.backend.model.payload.HotelTotalAccommodationParamsPayload;
 import com.cvc.backend.model.response.HotelTotalAccommodationResponse;
 import com.cvc.backend.model.response.RoomCategoryResponse;
 import com.cvc.backend.model.response.RoomDetails;
