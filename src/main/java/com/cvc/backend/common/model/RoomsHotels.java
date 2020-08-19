@@ -14,4 +14,4 @@ public class RoomsHotels {
     private Long roomID;
     private String categoryName;
     private PriceRoom price;
-    }
+}

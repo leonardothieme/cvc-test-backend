@@ -2,8 +2,6 @@ package com.cvc.backend.config;
 
 
 import com.cvc.backend.CvcBackendApplication;
-import org.bson.types.ObjectId;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +24,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage(CvcBackendApplication.class.getPackage().getName()))
                 .build().apiInfo(apiInfo())
                 .useDefaultResponseMessages(false).genericModelSubstitutes(ResponseEntity.class)
-                .directModelSubstitute(ObjectId.class, String.class).tags(new Tag("Hotels", "API"))
+                .tags(new Tag("Hotels", "API"))
                 .directModelSubstitute(LocalDate.class, String.class);
     }
 

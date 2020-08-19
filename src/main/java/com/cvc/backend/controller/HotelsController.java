@@ -2,16 +2,14 @@ package com.cvc.backend.controller;
 
 import com.cvc.backend.api.HotelsApi;
 import com.cvc.backend.common.model.HotelsDetailsResponse;
+import com.cvc.backend.model.HotelTotalAccommodationParamsPayload;
 import com.cvc.backend.model.response.HotelTotalAccommodationResponse;
 import com.cvc.backend.service.HotelsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import javax.validation.Valid;
 import java.util.Collection;
 
 import static org.springframework.http.HttpStatus.OK;
@@ -41,19 +39,12 @@ public class HotelsController implements HotelsApi {
         return response.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(response);
     }
 
-    @GetMapping("/city/{cityId}/total/{checkInDate}/{checkOutDate}/{numberOfAdults}/{numberOfChildren}")
-    public HotelTotalAccommodationResponse totalAccommodation(@PathVariable("cityId") final Long cityId,
-                                                                                @PathVariable("checkInDate") @DateTimeFormat(pattern = "dd-MM-yyyy")LocalDate checkInDate,
-                                                                                @PathVariable("checkOutDate") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate checkOutDate,
-                                                                                @PathVariable("numberOfAdults")Integer numberOfAdults,
-                                                                                @PathVariable("numberOfChildren")Integer numberOfChildren) {
-
-        final var response = service.totalAccommodation(cityId,checkInDate,checkOutDate,numberOfAdults,numberOfChildren);
 
 
-        return response;
-//        return response.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(response);
+    @GetMapping("/city/total")
+    public HotelTotalAccommodationResponse totalAccommodation(@Valid HotelTotalAccommodationParamsPayload params) {
 
+       return service.totalAccommodation(params);
 
     }
 }

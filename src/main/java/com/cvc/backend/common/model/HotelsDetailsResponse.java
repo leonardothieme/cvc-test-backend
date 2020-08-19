@@ -14,8 +14,6 @@ import java.util.Collection;
 @Builder
 public class HotelsDetailsResponse {
 
-    @ApiModelProperty(value = "Date all tokens in the batch were generated")
-
     private Long id;
     private String name;
     private Integer cityCode;

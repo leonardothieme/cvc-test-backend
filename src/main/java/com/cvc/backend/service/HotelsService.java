@@ -2,19 +2,20 @@ package com.cvc.backend.service;
 
 import com.cvc.backend.common.client.HotelsClient;
 import com.cvc.backend.common.model.HotelsDetailsResponse;
+import com.cvc.backend.common.model.RoomsHotels;
+import com.cvc.backend.exception.handler.DateAfterCheckoutException;
+import com.cvc.backend.exception.handler.HotelNoContentException;
+import com.cvc.backend.model.HotelTotalAccommodationParamsPayload;
 import com.cvc.backend.model.response.HotelTotalAccommodationResponse;
 import com.cvc.backend.model.response.RoomCategoryResponse;
 import com.cvc.backend.model.response.RoomDetails;
 import com.cvc.backend.model.response.RoomPriceDetails;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.Period;
+import java.math.RoundingMode;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 
@@ -32,47 +33,42 @@ public class HotelsService {
         return hotelsClient.findByCityId(cityId);
     }
 
-    public HotelTotalAccommodationResponse totalAccommodation(final Long cityId,
-                                                              final LocalDate checkInDate,
-                                                              final LocalDate checkOutDate,
-                                                              final Integer numberOfAdults,
-                                                              final Integer numberOfChildren){
+    public HotelTotalAccommodationResponse totalAccommodation(final HotelTotalAccommodationParamsPayload params){
 
+        final var hotelsDetails = hotelsClient.findByHotelId(params.getCityId()).stream().findFirst().orElseThrow(HotelNoContentException::new);
 
-        final var hotelsDetails =   hotelsClient.findByHotelId(cityId).stream().findFirst().get();
+        if (params.getCheckInDate().isAfter(params.getCheckOutDate())) {
+            throw new DateAfterCheckoutException();
+        }
 
-        final var  days = ChronoUnit.DAYS.between(checkInDate,checkOutDate);
+        final var  days = ChronoUnit.DAYS.between(params.getCheckInDate(),params.getCheckOutDate());
 
         final var hotels = hotelsDetails.getRooms().stream().findFirst().get();
 
-        final var roomPrice = new RoomPriceDetails();
+        final var category = mapperToRoomCategory(hotels);
 
-        final var category = new RoomCategoryResponse();
-        final var roomDetails = new RoomDetails();
-        roomDetails.setId(hotels.getRoomID());
-        roomPrice.setPricePerDayChild(hotels.getPrice().getChild());
-
-
+        final var roomPrice = mapperToPriceHotels(hotels);
 
         final var totalPrice = hotels.getPrice().getAdult().multiply(new BigDecimal(days)).add(hotels.getPrice().getChild().multiply(new BigDecimal(days)));
-        category.setName(hotels.getCategoryName());
 
-        roomDetails.setTotalPrice(totalPrice);
+        final var totalPriceComission = totalPrice.divide(new BigDecimal(0.70), RoundingMode.HALF_UP);
 
-        roomDetails.setCategory(category);
-//        roomDetails.getPriceDetail().setPricePerDayAdult(hotels.getPrice().getAdult());
-//        roomDetails.getPriceDetail().setPricePerDayChild(hotels.getPrice().getChild());
+        final var roomDetails = mapperToRoomDetails(hotels, category, roomPrice, totalPrice.add(totalPriceComission));
 
-
-
-        final var  response = new HotelTotalAccommodationResponse();
-
-        response.setCity(hotelsDetails.getCityName());
-        response.setId(hotelsDetails.getId());
-        response.setRooms(roomDetails);
-
-
-
-        return response;
+        return new HotelTotalAccommodationResponse(hotelsDetails, roomDetails);
     }
+
+    private RoomCategoryResponse mapperToRoomCategory(final RoomsHotels hotels) {
+        return RoomCategoryResponse.builder().name(hotels.getCategoryName()).build();
+    }
+
+    private RoomPriceDetails mapperToPriceHotels(final RoomsHotels hotels) {
+        return RoomPriceDetails.builder().pricePerDayAdult(hotels.getPrice().getAdult()).pricePerDayChild(hotels.getPrice().getChild()).build();
+
+    }
+
+    private RoomDetails mapperToRoomDetails(final RoomsHotels hotels, final RoomCategoryResponse category, final RoomPriceDetails roomPrice, final BigDecimal totalPrice) {
+        return RoomDetails.builder().totalPrice(totalPrice).category(category).priceDetail(roomPrice).id(hotels.getRoomID()).build();
+    }
+
 }
